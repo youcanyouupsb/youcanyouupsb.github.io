@@ -9,13 +9,16 @@
             font-family: Arial, sans-serif;
         }
         .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             width: 80%;
             margin: 0 auto;
         }
         .module {
             border: 2px dashed #333;
             padding: 20px;
-            margin-bottom: 20px;
+            flex: 1 1 300px; /* 每列最大宽度300px，平分剩余空间 */
         }
     </style>
 </head>
@@ -27,6 +30,8 @@
                 <li><a href="https://www.wikipedia.org">维基百科</a></li>
                 <li><a href="https://www.khanacademy.org">可汗学院</a></li>
                 <li><a href="https://www.codecademy.com">Codecademy</a></li>
+                <li><a href="https://chat.openai.com">OpenAI Chat</a></li>
+                <li><a href="https://github.com">GitHub</a></li>
             </ul>
         </div>
         <div class="module">
