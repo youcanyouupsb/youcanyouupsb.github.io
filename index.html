@@ -4,60 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>有趣网站链接</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .node {
+            cursor: pointer;
+            fill: #fff;
+            stroke: #000;
+            stroke-width: 1.5px;
         }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 80%;
-            margin: 0 auto;
-        }
-        .module {
-            border: 2px dashed #333;
-            padding: 20px;
-            flex: 1 1 300px; /* 每列最大宽度300px，平分剩余空间 */
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 1.5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="module">
-            <h2>基础知识</h2>
-            <ul>
-                <li><a href="https://www.wikipedia.org">维基百科</a></li>
-                <li><a href="https://www.khanacademy.org">可汗学院</a></li>
-                <li><a href="https://www.codecademy.com">Codecademy</a></li>
-                <li><a href="https://chat.openai.com">OpenAI Chat</a></li>
-                <li><a href="https://github.com">GitHub</a></li>
-            </ul>
-        </div>
-        <div class="module">
-            <h2>编程</h2>
-            <ul>
-                <li><a href="https://www.stackoverflow.com">Stack Overflow</a></li>
-                <li><a href="https://www.w3schools.com">W3Schools</a></li>
-                <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
-                <li><a href="https://pytorch.org/docs/stable/index.html">PyTorch Docs</a></li>
-            </ul>
-        </div>
-        <div class="module">
-            <h2>数学</h2>
-            <ul>
-                <li><a href="https://www.desmos.com/calculator?lang=zh-CN">绘制数学函数图像</a></li>
-                <li><a href="https://www.shuxuele.com/index.html">数学</a></li>
-            </ul>
-        </div>
-        <div class="module">
-            <h2>专业知识</h2>
-            <ul>
-                <li><a href="https://jalammar.github.io/illustrated-transformer/">transformer介绍</a></li>
-                <li><a href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">BERT Encoder</a></li>
-                <li><a href="https://medium.com/dissecting-bert/transformer-architecture-where-the-encoder-comes-from-3b86f66b0e5f">BERT Dencoder</a></li>
-            </ul>
-        </div>
-    </div>
+    <svg width="960" height="600"></svg>
+    <script>
+        const links = [
+            {source: "基础知识", target: "维基百科"},
+            {source: "基础知识", target: "可汗学院"},
+            {source: "基础知识", target: "Codecademy"},
+            {source: "编程", target: "Stack Overflow"},
+            {source: "编程", target: "W3Schools"},
+            {source: "编程", target: "MDN Web Docs"},
+            {source: "数学", target: "绘制数学函数图像"},
+            {source: "数学", target: "数学"},
+            {source: "专业知识", target: "transformer介绍"},
+            {source: "专业知识", target: "BERT Encoder"},
+            {source: "专业知识", target: "BERT Dencoder"}
+        ];
+
+        const nodes = {};
+
+        // Compute the distinct nodes from the links.
+        links.forEach(link => {
+            link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+        });
+
+        const width = 960;
+        const height = 600;
+
+        const svg = d3.select("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const simulation = d3.forceSimulation(Object.values(nodes))
+            .force("link", d3.forceLink(links).id(d => d.name))
+            .force("charge", d3.forceManyBody())
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = svg.selectAll(".link")
+            .data(links)
+            .enter().append("line")
+            .attr("class", "link");
+
+        const node = svg.selectAll(".node")
+            .data(Object.values(nodes))
+            .enter().append("circle")
+            .attr("class", "node")
+            .attr("r", 5)
+            .call(drag(simulation));
+
+        node.append("title")
+            .text(d => d.name);
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+        });
+
+        function drag(simulation) {
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+            }
+
+            return d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended);
+        }
+    </script>
 </body>
 </html>
