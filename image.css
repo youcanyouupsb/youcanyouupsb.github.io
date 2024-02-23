@@ -1,1 +1,5 @@
-
+img.logo {
+  width: 100px; /* 根据需要调整大小 */
+  height: auto;
+  margin: 10px; /* 如果需要，可以调整外边距 */
+}
