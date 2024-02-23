@@ -1,15 +1,35 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title>有趣网站链接集合</title>
-  <a href="/index.html" class="logo-link">
-      <img src="chatGLM.png" alt="有趣网站链接集合" class="logo">
-  </a>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页标题</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="category">
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>网站名称</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="services.html">服务</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="banner">
+        <div class="container">
+            <h1>欢迎来到我的网站</h1>
+        </div>
+    </section>
+    <section class="main-section">
+        <div class="container">
             <h2>有趣的网站1</h2>
             <div class="module">
                 <ul>
@@ -18,37 +38,16 @@
                     <li><a href="https://www.codecademy.com">Codecademy</a></li>
                     <li><a href="https://z-lib.io/s">全球最大的网站图书馆 z-library</a></li>
                     <li><a href="https://scholar.google.com.hk/?hl=zh-CN">学术文档谷歌搜索引擎</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="category">
-            <h2>有趣的网站2</h2>
-            <div class="module">
-                <ul>
-                    <li><a href="https://www.stackoverflow.com">Stack Overflow</a></li>
+ <li><a href="https://www.stackoverflow.com">Stack Overflow</a></li>
                     <li><a href="https://www.w3schools.com">W3Schools</a></li>
                     <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
                     <li><a href="https://www.desmos.com/calculator?lang=zh-CN">绘制数学函数图像</a></li>
                     <li><a href="https://www.shuxuele.com/index.html">数学</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="category">
-            <h2>AI Chat</h2>
-            <div class="module">
-                <ul>
-                    <li><a href="https://chatglm.cn/">智谱AI-基于清华ChatGLM大模型的国内的ChatAI：不需要科学上网</a></li>
+ <li><a href="https://chatglm.cn/">智谱AI-基于清华ChatGLM大模型的国内的ChatAI：不需要科学上网</a></li>
                     <li><a href="https://8jrfoy.aitianhu1.top/">chatAI-国内免费的ChatAI web 可切换模型 部分模型付费：不需要科学上网</a></li>
                     <li><a href="https://groq.com/">groq-Chat-硅谷grop公司基于LPU硬件加速的的暂时免费的ChatAI web 可以切换模型 Llama和Matrix：暂时不需要科学上网</a></li>
                     <li><a href="https://chat.openai.com/">OpenAI-ChatGPT OpenAI官网的gpt3.5 4.0需要付费使用：需要科学上网</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="category">
-            <h2>有趣的网站4</h2>
-            <div class="module">
-                <ul>
-                    <li><a href="https://www.pytorch.org/docs/stable/index.html">PyTorch Docs</a></li>
+                 <li><a href="https://www.pytorch.org/docs/stable/index.html">PyTorch Docs</a></li>
                     <li><a href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">BERT Encoder</a></li>
                     <li><a href="https://medium.com/dissecting-bert/transformer-architecture-where-the-encoder-comes-from-3b86f66b0e5f">BERT Dencoder</a></li>
                     <li><a href="https://www.cbedai.net/">有趣的人工智能课程</a></li>
@@ -56,9 +55,10 @@
                     <li><a href="https://www.speedcat.ws">speedcat</a></li>
                     <li><a href="https://huggingface.co/">huggingface</a></li>
                     <li><a href="https://kaisery.github.io/trpl-zh-cn/title-page.html">rust语言教程</a></li>
-                </ul>
-            </div>
         </div>
-    </div>
+    </section>
+    <footer>
+        <p>版权所有 &copy; 2023 网站名称</p>
+    </footer>
 </body>
 </html>
