@@ -54,12 +54,11 @@ nav ul li a {
 }
 
 footer {
-    background-color: #333; /* 页脚背景色 */
-    color: #ffffff; /* 页脚文字颜色 */
+    background-color: #333;
+    color: #ffffff;
     text-align: center;
     padding: 10px 0;
-    position: absolute;
-    bottom: 0;
+    /* 移除了position和bottom属性 */
     width: 100%;
 }
 
